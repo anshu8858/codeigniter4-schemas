@@ -170,6 +170,9 @@ class ModelHandler extends BaseDrafter implements DrafterInterface
 
             // Try to instantiate
             try {
+                $abstractClass = new \ReflectionClass($class); // Skip Abstract Classes to Instantiate
+                if($abstractClass->isAbstract())
+                    continue;
                 $instance = new $class();
             } catch (Exception $e) {
                 continue;
